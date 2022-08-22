@@ -1,12 +1,9 @@
 <?php
 $varUsage = "Variables declared using the var keyword are either globally or functionally scoped, they do not support block-level scope. This means that if a variable is defined in a loop or in an if statement it can be accessed outside the block and accidentally redefined leading to a buggy program. As a general rule, you should avoid using the var keyword."
-
-
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,39 +14,42 @@ $varUsage = "Variables declared using the var keyword are either globally or fun
 <body>
     <h1>PHP Badwords</h1>
 
-    <h1>
+    <p>
         <?php
         echo $varUsage;
-
-        // var is the badword
-        echo $_GET['badword'];
         ?>
-    </h1>
-    
-    <h2> Paragraph length is :
-        <i>
-            <?php
-            echo (strlen($varUsage));
-            ?>
-        </i>
-    </h2>
-<br>
-    <!-- ---------- -->
+    </p>
 
-    <h1> Modified paragraph : <br>
+    <p>
         <?php
-        echo $ModParagraph = str_replace ("var", '***', $varUsage );
+        $censored = $_GET['badword'];
         ?>
-    </h1>
-    
-    <h2> Paragraph length is :
+    </p>
+
+    <p> Paragraph length is :
         <i>
             <?php
-            echo (strlen($varUsage));
+            echo strlen($varUsage);
             ?>
         </i>
-    </h2>
+    </p>
+    <br>
 
+    <!-- ---------- -->
+    <p><strong> Modified paragraph</strong> : <br>
+        <?php
+        $ModParagraph = str_replace($censored, '***', $varUsage);
+        echo $ModParagraph;
+        ?>
+    </p>
+
+    <p> Paragraph length is :
+        <i>
+            <?php
+            echo (strlen($ModParagraph));
+            ?>
+        </i>
+    </p>
 </body>
 
 </html>
